@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+     <!-- spring容器 扫描基类 扫描包     创建对应的 bean     -->                   
+    <context:component-scan base-package="com.wf">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:/com/wf/web/config/jdbc.properties</value>
+                <!-- 这个classpath的路径是maven打包指定的环境目录，而非项目中的目录，查看pom.xml -->
+            </list>
+        </property>
+    </bean>
+    <!--<import resource="spring-mybatis.xml"/>-->
+
+</beans>
